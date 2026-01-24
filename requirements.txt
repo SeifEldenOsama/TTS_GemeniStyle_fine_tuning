@@ -1,0 +1,9 @@
+torch>=2.5.0
+torchaudio>=2.5.0
+transformers>=4.46.1
+datasets[audio]
+accelerate
+modal
+soundfile
+scipy
+parler-tts @ git+https://github.com/huggingface/parler-tts.git
