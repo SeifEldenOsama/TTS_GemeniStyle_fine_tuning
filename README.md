@@ -35,7 +35,8 @@ The original notebook logic has been modularized into a professional project str
 │   └── comparison_test/                   # Sample audio comparisons
 ├── scripts/
 │   ├── download_data.py                   # Modal script to download and structure data from Kaggle
-│   └── train.py                           # Modal script for H100-optimized Parler-TTS fine-tuning
+│   ├── train.py                           # Modal script for H100-optimized Parler-TTS fine-tuning
+│   └── compare_children_story.py          # Modal script to compare base vs. fine-tuned model on a children's story prompt
 ├── src/
 │   └── inference.py                       # Python script for running inference with the fine-tuned model
 ├── requirements.txt                       # Python dependencies for local development
@@ -75,7 +76,7 @@ The script automatically handles:
 
 ### 3. Inference
 
-The `src/inference.py` script provides a template for loading the fine-tuned model and generating new audio.
+The `src/inference.py` script provides a template for loading the fine-tuned model and generating new audio. The default example has been updated to a **children's story prompt** to showcase the model's potential for narrative and expressive content.
 
 1.  **Install Dependencies:**
     ```bash
@@ -86,6 +87,22 @@ The `src/inference.py` script provides a template for loading the fine-tuned mod
     ```bash
     python src/inference.py
     ```
+
+### 4. Model Comparison (Children's Content Example)
+
+To demonstrate the model's capability for generating expressive audio for children's content, a dedicated comparison script is provided. This script runs the base model and the fine-tuned model against a children's story prompt and a suitable voice description.
+
+**Test Case:**
+*   **Prompt:** "Once upon a time, in a magical forest, there lived a tiny dragon who couldn't breathe fire. Instead, he breathed colorful bubbles that made everyone laugh!"
+*   **Description:** "A warm, friendly female voice telling a story to children, with a gentle and expressive tone."
+
+**Run the Comparison:**
+
+```bash
+modal run scripts/compare_children_story.py
+```
+
+This will generate two audio files (`children_story_base.wav` and `children_story_fine_tuned.wav`) allowing for a direct comparison of the model's ability to capture the desired tone and style for narrative content.
 
 ## Local Development
 

@@ -24,9 +24,9 @@ def generate_audio(text, description, model_path, output_path="output.wav", devi
     print(f"Audio saved to {output_path}")
 
 if __name__ == "__main__":
-    # Example usage
-    SAMPLE_TEXT = "Hello, this is a test of the fine-tuned Parler TTS model."
-    SAMPLE_DESCRIPTION = "A female speaker with a clear and professional tone."
+    # Example usage: Children's Story
+    SAMPLE_TEXT = "Once upon a time, in a magical forest, there lived a tiny dragon who couldn't breathe fire. Instead, he breathed colorful bubbles that made everyone laugh!"
+    SAMPLE_DESCRIPTION = "A warm, friendly female voice telling a story to children, with a gentle and expressive tone."
     MODEL_PATH = "parler-tts/parler-tts-mini-v1" # Replace with your fine-tuned path
     
     generate_audio(SAMPLE_TEXT, SAMPLE_DESCRIPTION, MODEL_PATH)
