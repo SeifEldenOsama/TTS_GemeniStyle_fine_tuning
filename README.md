@@ -17,12 +17,12 @@ The entire workflow is designed for **ultra-optimized performance** and **reprod
 
 ## Dataset
 
-The fine-tuning process relies on a custom dataset. For this specific run, the model was **trained on 1,000 samples** and **evaluated on 100 samples**. The data preparation involves two main components: the raw audio data and the processed Hugging Face dataset repository.
+The fine-tuning process relies on a custom dataset. For this specific run, the model was **trained on 2,000 samples** and **evaluated on 200 samples**. The data preparation involves two main components: the raw audio data and the processed Hugging Face dataset repository.
 
-| Component | Link | Description |
-| :--- | :--- | :--- |
-| **Raw Audio Data (Kaggle)** | [https://www.kaggle.com/datasets/seifosamahosney/tts-dataset](https://www.kaggle.com/datasets/seifosamahosney/tts-dataset) | The original Kaggle dataset containing the audio files used for fine-tuning. |
-| **Hugging Face Dataset Repo** | `SeifElden2342532/parler-tts-dataset-format` | The pre-processed dataset, formatted and uploaded to the Hugging Face Hub for direct use in the training script. |
+| Component | Link |
+| :--- | :--- |
+| **Raw Audio Data (Kaggle)** | [https://www.kaggle.com/datasets/seifosamahosney/tts-dataset](https://www.kaggle.com/datasets/seifosamahosney/tts-dataset) |
+| **Hugging Face Dataset Repo** | `SeifElden2342532/parler-tts-dataset-format` |
 
 ## Repository Structure
 
