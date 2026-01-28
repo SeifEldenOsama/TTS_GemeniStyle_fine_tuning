@@ -33,9 +33,10 @@ The project is structured as follows:
 ├── notebooks/
 │   ├── TTS_Gemeni_Style-fine-tuned_v2.ipynb # Latest Modal notebook (updated)
 │   └── comparison_test/                    # Sample audio comparisons
-├── download_tts_simple.py                   # Modal script to download and structure data from Kaggle
-├── train_parler.py                          # Modal script for H100-optimized Parler-TTS fine-tuning
-├── compare_models.py                        # Modal script for running comparison between base and fine-tuned models
+├── scripts/
+│   ├── download_tts_simple.py               # Modal script to download and structure data from Kaggle
+│   ├── train_parler.py                      # Modal script for H100-optimized Parler-TTS fine-tuning
+│   └── compare_models.py                    # Modal script for running comparison between base and fine-tuned models
 ├── requirements.txt                         # Python dependencies
 └── README.md                                # This file
 ```
@@ -53,7 +54,7 @@ The project is structured as follows:
 The `download_tts_simple.py` script handles downloading the Kaggle dataset, unzipping it, and structuring it correctly into a persistent Modal Volume named `tts-dataset-storage`.
 
 ```bash
-modal run download_tts_simple.py
+modal run scripts/download_tts_simple.py
 ```
 
 ### 2. Model Fine-Tuning (H100)
@@ -61,7 +62,7 @@ modal run download_tts_simple.py
 The `train_parler.py` script executes the fine-tuning process. It is configured to request a dedicated **NVIDIA H100 GPU** instance on Modal for maximum training efficiency.
 
 ```bash
-modal run train_parler.py
+modal run scripts/train_parler.py
 ```
 
 ### 3. Model Comparison
@@ -69,7 +70,7 @@ modal run train_parler.py
 The `compare_models.py` script allows you to generate audio from both the base model and your fine-tuned model to compare the results.
 
 ```bash
-modal run compare_models.py
+modal run scripts/compare_models.py
 ```
 
 Developed with ❤️ by [Seif Elden Osama](https://github.com/SeifEldenOsama)
