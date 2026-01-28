@@ -20,7 +20,7 @@ def download_to_volume():
     temp_download_path = Path("/tmp/kaggle_data")
     temp_download_path.mkdir(exist_ok=True)
     
-    print(f"📥 Downloading Kaggle dataset to {temp_download_path}...")
+    print(f"Downloading Kaggle dataset to {temp_download_path}...")
     
     cmd = [
         "kaggle", "datasets", "download",
@@ -36,7 +36,7 @@ def download_to_volume():
         print(f"❌ Kaggle Error: {result.stderr}")
         return f"Download failed: {result.stderr}"
 
-    print("✅ Download successful! Moving files to correct structure...")
+    print("Download successful! Moving files to correct structure...")
 
     count = 0
     for file_path in temp_download_path.rglob("*.wav"):
@@ -45,7 +45,7 @@ def download_to_volume():
             shutil.move(str(file_path), str(target_file))
             count += 1
     
-    print(f"🚚 Moved {count} .wav files to {target_dir}")
+    print(f"Moved {count} .wav files to {target_dir}")
     volume.commit()
     return f"Data structured at {target_dir}"
 
