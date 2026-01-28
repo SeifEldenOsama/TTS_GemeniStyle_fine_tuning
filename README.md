@@ -13,7 +13,7 @@ The entire workflow is designed for **ultra-optimized performance** and **reprod
 | **Parler-TTS Fine-Tuning** | Adapts the base Parler-TTS model to a custom voice dataset. | Generates high-quality, personalized speech. |
 | **Modal Integration** | Scripts are written for seamless execution on the Modal platform. | Serverless, scalable, and reproducible cloud execution. |
 | **NVIDIA H100 Optimization** | Training environment is configured to utilize the powerful H100 GPU. | Achieves significantly faster training times and handles larger models. |
-| **Structured Codebase** | Notebook code is refactored into modular Python scripts. | Improves maintainability, professionalism, and ease of deployment. |
+| **Modularized Scripts** | Core functionalities are separated into standalone Python scripts for easier execution and maintenance. | Improves workflow clarity and professional standards. |
 
 ## Dataset
 
@@ -26,20 +26,18 @@ The fine-tuning process relies on a custom dataset. For this specific run, the m
 
 ## Repository Structure
 
-The original notebook logic has been modularized into a professional project structure:
+The project is structured as follows:
 
 ```
 .
 ├── notebooks/
-│   ├── TTS_Gemeni_Style-fine-tuned.ipynb  # Original Modal notebook (for reference)
-│   └── comparison_test/                   # Sample audio comparisons
-├── scripts/
-│   ├── download_data.py                   # Modal script to download and structure data from Kaggle
-│   └── train.py                           # Modal script for H100-optimized Parler-TTS fine-tuning
-├── src/
-│   └── inference.py                       # Python script for running inference with the fine-tuned model
-├── requirements.txt                       # Python dependencies for local development
-└── README.md                              # This file
+│   ├── TTS_Gemeni_Style-fine-tuned_v2.ipynb # Latest Modal notebook (updated)
+│   └── comparison_test/                    # Sample audio comparisons
+├── download_tts_simple.py                   # Modal script to download and structure data from Kaggle
+├── train_parler.py                          # Modal script for H100-optimized Parler-TTS fine-tuning
+├── compare_models.py                        # Modal script for running comparison between base and fine-tuned models
+├── requirements.txt                         # Python dependencies
+└── README.md                                # This file
 ```
 
 ## Usage with Modal
@@ -52,43 +50,26 @@ The original notebook logic has been modularized into a professional project str
 
 ### 1. Data Preparation
 
-The `download_data.py` script handles downloading the Kaggle dataset, unzipping it, and structuring it correctly into a persistent Modal Volume named `tts-dataset-storage`.
+The `download_tts_simple.py` script handles downloading the Kaggle dataset, unzipping it, and structuring it correctly into a persistent Modal Volume named `tts-dataset-storage`.
 
 ```bash
-modal run scripts/download_data.py
+modal run download_tts_simple.py
 ```
 
 ### 2. Model Fine-Tuning (H100)
 
-The `train.py` script executes the fine-tuning process. It is configured to request a dedicated **NVIDIA H100 GPU** instance on Modal for maximum training efficiency.
+The `train_parler.py` script executes the fine-tuning process. It is configured to request a dedicated **NVIDIA H100 GPU** instance on Modal for maximum training efficiency.
 
 ```bash
-modal run scripts/train.py
+modal run train_parler.py
 ```
 
-The script automatically handles:
-*   Setting up the CUDA environment.
-*   Cloning the Parler-TTS repository.
-*   Applying necessary patches for the training script.
-*   Running the `accelerate launch` command with `bf16` and `adamw_bnb_8bit` for ultra-optimized training.
-*   Saving the final model checkpoints to the persistent volume.
+### 3. Model Comparison
 
-### 3. Inference
+The `compare_models.py` script allows you to generate audio from both the base model and your fine-tuned model to compare the results.
 
-The `src/inference.py` script provides a template for loading the fine-tuned model and generating new audio.
-
-1.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-2.  **Run Inference:**
-    Update the `MODEL_PATH` in `src/inference.py` to point to your saved fine-tuned model, and then run:
-    ```bash
-    python src/inference.py
-    ```
-
-## Local Development
-
-For local development and environment setup, the required dependencies are listed in `requirements.txt`. Note that the Modal-specific scripts (`download_data.py`, `train.py`) are designed to run exclusively on the Modal platform.
+```bash
+modal run compare_models.py
+```
 
 Developed with ❤️ by [Seif Elden Osama](https://github.com/SeifEldenOsama)
