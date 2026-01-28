@@ -90,3 +90,5 @@ The `src/inference.py` script provides a template for loading the fine-tuned mod
 ## Local Development
 
 For local development and environment setup, the required dependencies are listed in `requirements.txt`. Note that the Modal-specific scripts (`download_data.py`, `train.py`) are designed to run exclusively on the Modal platform.
+
+Developed with ❤️ by [Seif Elden Osama](https://github.com/SeifEldenOsama)
