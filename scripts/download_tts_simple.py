@@ -27,7 +27,7 @@ def download_to_volume():
     temp_download_path = Path("/tmp/kaggle_data")
     temp_download_path.mkdir(exist_ok=True)
 
-    print(f"📥 Downloading Kaggle dataset to {temp_download_path}...")
+    print(f"Downloading Kaggle dataset to {temp_download_path}...")
 
     # Download + unzip
     cmd = [
@@ -41,10 +41,10 @@ def download_to_volume():
     result = subprocess.run(cmd, capture_output=True, text=True)
 
     if result.returncode != 0:
-        print(f"❌ Kaggle Error:\n{result.stderr}")
+        print(f"Kaggle Error:\n{result.stderr}")
         return "Download failed"
 
-    print("✅ Download successful! Locating dataset files...")
+    print("Download successful! Locating dataset files...")
 
     # -------------------------
     # Locate voices directory
@@ -52,14 +52,14 @@ def download_to_volume():
     voices_dirs = list(temp_download_path.rglob("voices"))
 
     if not voices_dirs:
-        print("❌ voices folder not found anywhere!")
-        print("📂 Extracted contents:")
+        print("voices folder not found anywhere!")
+        print("Extracted contents:")
         for p in temp_download_path.rglob("*"):
             print(" -", p)
         return "voices folder missing"
 
     source_voices_dir = voices_dirs[0]
-    print(f"📂 Found voices folder at: {source_voices_dir}")
+    print(f"Found voices folder at: {source_voices_dir}")
 
     # -------------------------
     # Move wav files
@@ -71,7 +71,7 @@ def download_to_volume():
             shutil.move(str(wav_file), str(target_file))
             count += 1
 
-    print(f"🚚 Moved {count} .wav files to {voices_dir}")
+    print(f"Moved {count} .wav files to {voices_dir}")
 
     # -------------------------
     # Locate & move metadata
@@ -81,9 +81,9 @@ def download_to_volume():
 
     if metadata_files:
         shutil.move(str(metadata_files[0]), str(metadata_dst))
-        print(f"📄 Moved metadata.jsonl to {metadata_dst}")
+        print(f"Moved metadata.jsonl to {metadata_dst}")
     else:
-        print("⚠️ metadata.jsonl not found")
+        print("metadata.jsonl not found")
 
     # -------------------------
     # Verification
@@ -91,11 +91,11 @@ def download_to_volume():
     has_wavs = any(voices_dir.glob("*.wav"))
     has_metadata = metadata_dst.exists()
 
-    print(f"🔎 WAV files present: {has_wavs}")
-    print(f"🔎 Metadata present: {has_metadata}")
+    print(f"WAV files present: {has_wavs}")
+    print(f"Metadata present: {has_metadata}")
 
     volume.commit()
-    print("💾 Saved to permanent volume 'tts-dataset-storage'")
+    print("Saved to permanent volume 'tts-dataset-storage'")
 
     return f"Dataset ready at {target_dir}"
 
