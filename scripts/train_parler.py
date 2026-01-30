@@ -72,7 +72,7 @@ def finetune_parler_tts():
     repo_path = Path("/root/parler-tts")
 
     if not repo_path.exists():
-        print("📥 Cloning Parler-TTS repository...")
+        print("Cloning Parler-TTS repository...")
         subprocess.run(
             ["git", "clone", "https://github.com/huggingface/parler-tts.git", str(repo_path)],
             check=True,
@@ -159,11 +159,11 @@ accelerate launch --num_processes={NUM_GPUS} training/run_parler_tts_training.py
   --report_to "none"
 """
 
-    print("\n🚀 Starting Parler-TTS fine-tuning on H100…")
+    print("\nStarting Parler-TTS fine-tuning on H100…")
     subprocess.run(training_command, shell=True, check=True, cwd=str(repo_path))
 
     modal.Volume.from_name(VOLUME_NAME).commit()
-    print("\n✅ Fine-tuning complete!")
+    print("\nFine-tuning complete!")
 
 # -------------------------
 # ENTRYPOINT
