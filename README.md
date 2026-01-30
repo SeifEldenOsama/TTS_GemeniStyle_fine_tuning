@@ -17,7 +17,7 @@ The entire workflow is designed for **ultra-optimized performance** and **reprod
 
 ## Dataset
 
-The fine-tuning process relies on a custom dataset. For this specific run, the model was **trained on 2,000 samples** and **evaluated on 200 samples**. The data preparation involves two main components: the raw audio data and the processed Hugging Face dataset repository.
+The fine-tuning process relies on a custom dataset. For this specific run, the model was **trained on 6,000 samples** and **evaluated on 400 samples**. The data preparation involves two main components: the raw audio data and the processed Hugging Face dataset repository.
 
 | Component | Link |
 | :--- | :--- |
