@@ -49,7 +49,7 @@ def run_comparison(prompt: str, description: str):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     def generate_audio(model_id, label):
-        print(f"🔊 Loading {label} model…")
+        print(f"Loading {label} model…")
         model = ParlerTTSForConditionalGeneration.from_pretrained(model_id).to(device)
         model.eval()
 
@@ -80,7 +80,7 @@ def run_comparison(prompt: str, description: str):
     base_audio, base_file = generate_audio(BASE_MODEL_NAME, "Base")
 
     if not FINETUNED_MODEL_PATH.exists():
-        return f"❌ Fine-tuned model not found at {FINETUNED_MODEL_PATH}", None
+        return f"Fine-tuned model not found at {FINETUNED_MODEL_PATH}", None
 
     ft_audio, ft_file = generate_audio(str(FINETUNED_MODEL_PATH), "Fine-tuned")
 
@@ -98,7 +98,7 @@ def main():
         "A male speaker delivers a gentle and moderate-paced speech. The recording is clean with a natural quality. The voice has a neutral pitch."
     )
 
-    print("🎧 Starting comparison inference…")
+    print("Starting comparison inference…")
     results = run_comparison.remote(test_prompt, test_description)
 
     if isinstance(results, str):
@@ -108,6 +108,6 @@ def main():
     for key, (audio_data, filename) in results.items():
         with open(filename, "wb") as f:
             f.write(audio_data)
-        print(f"✅ Saved {key} result to {filename}")
+        print(f"Saved {key} result to {filename}")
 
-    print("\n🎉 Comparison complete! Listen to both files.")
+    print("\nComparison complete! Listen to both files.")
