@@ -133,8 +133,8 @@ accelerate launch --num_processes={NUM_GPUS} training/run_parler_tts_training.py
   --eval_dataset_name "{HF_DATASET_REPO}" \\
   --eval_dataset_config_name "default" \\
   --eval_split_name "validation" \\
-  --max_train_samples 2000 \\
-  --max_eval_samples 200 \\
+  --max_train_samples 6000 \\
+  --max_eval_samples 400 \\
   --seed 42 \\
   --do_train true \\
   --do_eval true \\
@@ -154,7 +154,7 @@ accelerate launch --num_processes={NUM_GPUS} training/run_parler_tts_training.py
   --gradient_accumulation_steps 2 \\
   --gradient_checkpointing true \\
   --optim "adamw_bnb_8bit" \\
-  --max_steps 400 \\
+  --max_steps 800 \\
   --bf16 true \\
   --report_to "none"
 """
