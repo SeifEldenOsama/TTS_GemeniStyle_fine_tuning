@@ -1,6 +1,6 @@
 # 🗣️ Parler-TTS Fine-Tuning on Modal (H100 Optimized)
 
-## Project Overview
+## Project Overview 
 
 This repository contains the infrastructure and scripts for fine-tuning the **Parler-TTS** model, a state-of-the-art Text-to-Speech (TTS) model from Hugging Face, to generate high-fidelity audio in a specific voice or style.
 
