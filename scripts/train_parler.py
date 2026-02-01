@@ -3,9 +3,7 @@ import os
 import subprocess
 from pathlib import Path
 
-# -------------------------
 # CONFIG
-# -------------------------
 GPU_CONFIG = "H100:1"
 NUM_GPUS = 1
 
@@ -14,9 +12,7 @@ MOUNT_PATH = Path("/data")
 OUTPUT_DIR = MOUNT_PATH / "parler-tts-finetuned-h100"
 HF_DATASET_REPO = "SeifElden2342532/parler-tts-dataset-format"
 
-# -------------------------
 # DEPENDENCIES (H100 SAFE)
-# -------------------------
 REQUIREMENTS = [
     "torch==2.4.1",
     "torchaudio==2.4.1",
@@ -56,9 +52,7 @@ app = modal.App(
     image=image,
 )
 
-# -------------------------
 # TRAIN FUNCTION
-# -------------------------
 @app.function(
     volumes={str(MOUNT_PATH): modal.Volume.from_name(VOLUME_NAME)},
     timeout=25000,
@@ -78,9 +72,7 @@ def finetune_parler_tts():
             check=True,
         )
 
-    # -------------------------
     # PATCH KNOWN PARLER-TTS BUGS
-    # -------------------------
     import training.data
 
     data_py_path = Path(training.data.__file__)
@@ -118,9 +110,7 @@ def finetune_parler_tts():
 
     training_script_path.write_text(script_content)
 
-    # -------------------------
     # TRAINING COMMAND
-    # -------------------------
     model_name = "parler-tts/parler-tts-mini-v1"
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
