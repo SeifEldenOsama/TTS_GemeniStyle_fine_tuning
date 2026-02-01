@@ -16,20 +16,17 @@ volume = modal.Volume.from_name("tts-dataset-storage", create_if_missing=True)
 def download_to_volume():
     """Download Kaggle TTS dataset and structure it correctly"""
 
-    # Target structure (Parler-TTS compatible)
     target_dir = Path("/data/tts_dataset/teacher_dataset_large_updated")
     voices_dir = target_dir / "voices"
 
     target_dir.mkdir(parents=True, exist_ok=True)
     voices_dir.mkdir(exist_ok=True)
 
-    # Temp download location
     temp_download_path = Path("/tmp/kaggle_data")
     temp_download_path.mkdir(exist_ok=True)
 
     print(f"Downloading Kaggle dataset to {temp_download_path}...")
 
-    # Download + unzip
     cmd = [
         "kaggle", "datasets", "download",
         "-d", "seifosamahosney/tts-dataset",
@@ -46,9 +43,6 @@ def download_to_volume():
 
     print("Download successful! Locating dataset files...")
 
-    # -------------------------
-    # Locate voices directory
-    # -------------------------
     voices_dirs = list(temp_download_path.rglob("voices"))
 
     if not voices_dirs:
@@ -61,9 +55,6 @@ def download_to_volume():
     source_voices_dir = voices_dirs[0]
     print(f"Found voices folder at: {source_voices_dir}")
 
-    # -------------------------
-    # Move wav files
-    # -------------------------
     count = 0
     for wav_file in source_voices_dir.rglob("*.wav"):
         target_file = voices_dir / wav_file.name
@@ -73,9 +64,6 @@ def download_to_volume():
 
     print(f"Moved {count} .wav files to {voices_dir}")
 
-    # -------------------------
-    # Locate & move metadata
-    # -------------------------
     metadata_files = list(temp_download_path.rglob("metadata.jsonl"))
     metadata_dst = target_dir / "metadata.jsonl"
 
@@ -85,9 +73,6 @@ def download_to_volume():
     else:
         print("metadata.jsonl not found")
 
-    # -------------------------
-    # Verification
-    # -------------------------
     has_wavs = any(voices_dir.glob("*.wav"))
     has_metadata = metadata_dst.exists()
 
