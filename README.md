@@ -22,7 +22,7 @@ The fine-tuning process relies on a custom dataset. For this specific run, the m
 | Component | Link |
 | :--- | :--- |
 | **Raw Audio Data (Kaggle)** | [https://www.kaggle.com/datasets/seifosamahosney/tts-dataset](https://www.kaggle.com/datasets/seifosamahosney/tts-dataset) |
-| **Hugging Face Dataset Repo** | `(https://huggingface.co/datasets/SeifElden2342532/parler-tts-dataset-format)` |
+| **Hugging Face Dataset Repo** | `https://huggingface.co/datasets/SeifElden2342532/parler-tts-dataset-format` |
 | **Hugging Face Model Repo** | `https://huggingface.co/SeifElden2342532/Harmony_Parler_TTS` |
 
 ## Repository Structure
